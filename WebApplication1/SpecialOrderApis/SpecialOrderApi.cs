@@ -18,12 +18,16 @@ internal static class SpecialOrderApi
         .WithName("CreateSpecialOrder")
         .WithOpenApi();
 
-        orderGroup.MapGet("/update", async (ISpecialOrderService service, ISpecialOrderRepo repo,
+        orderGroup.MapGet("/update", async (IMediator mediator,
             int orderId, int removeItemId, int updateItemId) =>
         {
-            var order = await repo.Get(orderId);
-            service.UpdateOrder(order, removeItemId, updateItemId);
-            await repo.Update(order);
+            var command = new UpdateSpecialOrderCommand()
+            {
+                OrderId = orderId,
+                RemoveItemId = removeItemId,
+                UpdateItemId = updateItemId
+            };
+            await mediator.Send(command);
         })
         .WithName("UpdateSpecialOrder")
         .WithOpenApi();

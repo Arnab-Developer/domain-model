@@ -1,10 +1,16 @@
+using Infra.BuyerInfra;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining(typeof(Program)));
+
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssemblyContaining(typeof(Program));
+    cfg.AddOpenBehavior(typeof(TransactionBehavior<,>));
+});
 
 var constr = builder.Configuration.GetConnectionString("App1");
 builder.Services.AddSqlServer<App1Context>(constr);
@@ -12,6 +18,7 @@ builder.Services.AddSqlServer<App1Context>(constr);
 builder.Services.AddTransient<IOrderRepo, OrderRepo>();
 builder.Services.AddTransient<ISpecialOrderRepo, SpecialOrderRepo>();
 builder.Services.AddTransient<ILocalOrderRepo, LocalOrderRepo>();
+builder.Services.AddTransient<IBuyerRepo, BuyerRepo>();
 
 builder.Services.AddTransient<IOrderService, OrderService>();
 builder.Services.AddTransient<ISpecialOrderService, SpecialOrderService>();
@@ -35,4 +42,6 @@ app.Run();
 select * from orders
 select * from orderitems order by orderid
 select * from SpecialItemDatas
+select * from Buyers
+select * from BuyerDetails
 */

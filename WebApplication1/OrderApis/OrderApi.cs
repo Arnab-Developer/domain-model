@@ -18,12 +18,16 @@ internal static class OrderApi
         .WithName("CreateOrder")
         .WithOpenApi();
 
-        orderGroup.MapGet("/update", async (IOrderService service, IOrderRepo repo,
-            int orderId, int removeItemId, int updateItemId) =>
+        orderGroup.MapGet("/update", async (IMediator mediator, int orderId, int removeItemId,
+            int updateItemId) =>
         {
-            var order = await repo.Get(orderId);
-            service.UpdateOrder(order, removeItemId, updateItemId);
-            await repo.Update(order);
+            var updateCommand = new UpdateOrderCommand()
+            {
+                OrderId = orderId,
+                RemoveItemId = removeItemId,
+                UpdateItemId = updateItemId
+            };
+            await mediator.Send(updateCommand);
         })
         .WithName("UpdateOrder")
         .WithOpenApi();

@@ -1,6 +1,4 @@
-﻿using Core.Notifications;
-
-namespace Core.OrderRoot;
+﻿namespace Core.OrderRoot;
 
 public class Order : Root, IOrder
 {

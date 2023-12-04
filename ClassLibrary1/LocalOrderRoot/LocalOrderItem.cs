@@ -1,6 +1,4 @@
-﻿using Core.SpecialOrderRoot;
-
-namespace Core.LocalOrderRoot;
+﻿namespace Core.LocalOrderRoot;
 
 public class LocalOrderItem : OrderItem
 {

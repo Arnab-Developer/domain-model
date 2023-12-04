@@ -1,6 +1,4 @@
-﻿using Core.Notifications;
-
-namespace Core.LocalOrderRoot;
+﻿namespace Core.LocalOrderRoot;
 
 public class LocalOrder : Order
 {

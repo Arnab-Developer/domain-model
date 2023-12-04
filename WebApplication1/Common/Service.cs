@@ -10,4 +10,10 @@ public static class Service
         order.UpdateItemAddress(updateItemId, "new country", "new city");
         order.UpdateItemQuantity(updateItemId, 105);
     }
+
+    public static void UpdateBuyer(IBuyer buyer)
+    {
+        buyer.Name = "new buyer";
+        buyer.AddDetail("doi");
+    }
 }

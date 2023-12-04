@@ -1,6 +1,4 @@
-﻿using Core.Notifications;
-
-namespace Core.SpecialOrderRoot;
+﻿namespace Core.SpecialOrderRoot;
 
 public class SpecialOrder : Order
 {
@@ -35,7 +33,7 @@ public class SpecialOrder : Order
         var item = _items.Single(i => i.Id == itemId);
         item.Quantity = quantity;
 
-        var notification = new UpdateSpecialItemQuantityNotification();
+        var notification = new UpdateSpecialItemQuantityNotification(Id);
         AddNotification(notification);
     }
 

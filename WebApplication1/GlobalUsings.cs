@@ -1,8 +1,9 @@
-﻿global using Core.LocalOrderRoot;
-global using Core.Notifications;
+﻿global using Core.BuyerRoot;
+global using Core.LocalOrderRoot;
 global using Core.OrderRoot;
 global using Core.SpecialOrderRoot;
-global using Infra;
+global using Infra.Common;
+global using Infra.OrderInfra;
 global using MediatR;
 global using WebApplication1.Common;
 global using WebApplication1.LocalOrderApis;
